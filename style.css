@@ -1,0 +1,60 @@
+
+#players { 
+	list-style: none;
+	padding-left: 0;
+	padding: 9px;
+	text-align:left;
+}
+
+#players span {
+	float:right;
+}
+
+.row {
+
+}
+
+.row:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+
+.panel {
+	border: 1px solid rgb(100,100,100);
+	border-radius: 4px;
+	width: 210px;
+	height: 300px;
+	float:left;
+	margin-right: 20px;
+}
+
+.panel:first-child {
+	margin-left: 90px;
+}
+
+.match {
+	border: 2px solid rgb(180,180,180);
+	font: 11px arial;
+	border-radius: 5px;
+	width: 90%;
+	height: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 15px;
+	text-align:center;
+}
+
+.match:first-child { margin-top: 15px;}
+.match:last-child { margin-top: 5px;}
+.match input {
+	width: 14px;
+	display: inline;
+}
+
+.match.point3 { border: 2px solid green;}
+.match.point1 { border: 2px solid yellow;}
+.match.point0 { border: 2px solid red;}
