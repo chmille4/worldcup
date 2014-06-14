@@ -61,9 +61,14 @@
 				 match.score2;				 
 				 var guessScore = false;
 				 var guessWinner = false;
+				 if (name == 'AdamJ') {
+				 	var h = 3;
+				 	h +=3;
+				 	var mmm = 'chase'
+				 }
 				 if ( match.score1 != "" && ((match.score1 == s1 && match.score2 == s2) || (match.score2 == s1 && match.score1 == s2)) )
 				 	guessScore = true;
-				 if ( match.score1 != "" && ((match.score1 >= match.score2 && s1 >= s2) || (match.score1 < match.score2 && s1 < s2)) )
+				 if ( match.score1 != "" && ((match.score1 > match.score2 && s1 > s2) || (match.score1 < match.score2 && s1 < s2) || (match.score1 == match.score2 && s1 == s2)) )
 				 	guessWinner = true;
 
 				 if (populateScores) $match.removeClass('point3 point1 point0');
