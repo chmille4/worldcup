@@ -53,6 +53,7 @@ body {
 	margin-right: auto;
 	margin-bottom: 15px;
 	text-align:center;
+	position: relative;
 }
 
 .match:first-child { margin-top: 15px;}
@@ -65,6 +66,23 @@ body {
 .match.point3 { border: 2px solid green;}
 .match.point1 { border: 2px solid yellow;}
 .match.point0 { border: 2px solid red;}
+.match .badge { 
+	position: absolute;
+	color: white;
+	background: #2d8fc1;
+	border: 2px solid #2882b2;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	font-size: 11px;
+	line-height: 20px;
+	top: -12px;
+	left: -10px;
+	display: none;
+}
+
+.match.point3 .badge3 { display: inline;}
+.match.point1 .badge1 { display: inline;}
 
 .played .score { font-size: 22px;}
 .played .score1 { margin-right: 15px;}
