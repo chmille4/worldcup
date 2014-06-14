@@ -1,3 +1,7 @@
+body {
+	font-family: Lato;
+	font-weight: 300;
+}
 
 #players { 
 	list-style: none;
@@ -38,10 +42,12 @@
 
 .match {
 	border: 2px solid rgb(180,180,180);
-	font: 11px arial;
+	/*font: 11px arial;*/
+	font-size: 13px;
 	border-radius: 5px;
 	width: 90%;
 	height: 30px;
+	line-height: 30px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 15px;
@@ -58,3 +64,35 @@
 .match.point3 { border: 2px solid green;}
 .match.point1 { border: 2px solid yellow;}
 .match.point0 { border: 2px solid red;}
+
+.played .score { font-size: 22px;}
+.played .score1 { margin-right: 15px;}
+
+.score {
+	font-size: 14px;
+	margin-left: 3px;
+	margin-right: 3px;
+	width: 5px;
+	display: block;
+	display: inline-block;	
+	min-height: 1px;
+}
+
+.vs {
+	margin-right: 10px;
+	margin-left: 4px;
+}
+
+.played .vs {
+	display: none;
+}
+
+#crown {
+	position: absolute;
+	top: -11px;
+	left: -10px;
+	width:25px;
+	transform:rotate(-25deg);
+	-ms-transform:rotate(-25deg); /* IE 9 */
+	-webkit-transform:rotate(-25deg); /* Opera, Chrome, and Safari */
+}

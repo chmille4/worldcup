@@ -4,6 +4,7 @@
 	<title>Boston College World Cup</title>	
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var id = 0;
@@ -11,15 +12,18 @@
 				
 				for (var k=0; k < 6; k++ ) {
 					id += 1;
-					$(panel).append("<div id='" + id + "' class='match'><span class='team team1'></span><input class='score score1' type='text'></input><span>vs</span><input class='score score2' type='text'></input>	<span class='team team2'></span></div>");
+					$(panel).append("<div id='" + id + "' class='match'><span class='team team1'></span><span class='score score1' type='text'></span><span class='vs'>vs</span><span class='team team2'></span><span class='score score2' type='text'></span></div>");
 				}
 			})
 			window.correctScores.forEach(function(match){				
 				$match = $("#" + match.id);
 				$match.children('.team1').html( match.team1 );
 				$match.children('.team2').html( match.team2 );
-				$match.children('.score1').val( match.score1 );
-				$match.children('.score2').val( match.score2 );
+				if (match.score1 != '') {
+					$match.addClass('played')					
+				}
+				$match.children('.score1').html( match.score1 );
+				$match.children('.score2').html( match.score2 );
 			});
 
 			window.playerScores = [];
@@ -28,10 +32,16 @@
 			}
 
 			window.playerScores.sort(function(a,b) {return ((b[1] < a[1]) ? -1 : ((b[1] > a[1]) ? 1 : 0));})
-			
+			var crown = true;
 			window.playerScores.forEach(function(player) {
 				var str = "<li><a href='#' onclick='generateScore(\"" + player[0] + "\",true)'>" + player[0] + "</a>" + "\t" + player[1] + "</li>";			
 				$("#players").append("<li><a href='#' onclick='generateScore(\"" + player[0] + "\",true)'>" + player[0] + "</a>\t<span>" + player[1] + "</span></li></ul>")
+				// add crown to top spot
+				if (crown) {
+					$('#players li').css('position', 'relative')
+					$('#players li').append('<img id="crown" src="images/crown.png"></img>');
+					crown = false;
+				}
 			})
 
 		});
@@ -61,11 +71,7 @@
 				 match.score2;				 
 				 var guessScore = false;
 				 var guessWinner = false;
-				 if (name == 'AdamJ') {
-				 	var h = 3;
-				 	h +=3;
-				 	var mmm = 'chase'
-				 }
+				 
 				 if ( match.score1 != "" && ((match.score1 == s1 && match.score2 == s2) || (match.score2 == s1 && match.score1 == s2)) )
 				 	guessScore = true;
 				 if ( match.score1 != "" && ((match.score1 > match.score2 && s1 > s2) || (match.score1 < match.score2 && s1 < s2) || (match.score1 == match.score2 && s1 == s2)) )
@@ -89,8 +95,8 @@
 					 }
 				 }
 				if (populateScores) {
-					$match.children('.score1').val(  s1 );
-					$match.children('.score2').val(  s2 );
+					$match.children('.score1').html(  s1 );
+					$match.children('.score2').html(  s2 );
 				}
 			});
 			return points;
@@ -98,33 +104,35 @@
 	</script>
 </head>
 <body>
-	<div style="text-align:center; float:left; width:200px;border: 1px solid rgb(100,100,100)">
-		<div>Scoreboard</div>
-		<ul id="players"></ul>
-	</div>
-	<div style="width: 1100px; float:right">
-		<div class='row'>
-			<div class='panel'>				
+	<div style="width:1225px;margin-left:auto;margin-right:auto;text-align:center">
+		<div style="font-size:40px;margin-bottom:20px">Boston College World Cup Bracket</div>
+		<div style="text-align:center; float:left; width:200px;border: 1px solid rgb(100,100,100)">
+			<div>Scoreboard</div>
+			<ul id="players"></ul>
+		</div>
+		<div style="width: 1018px; float:right">
+			<div class='row'>
+				<div class='panel'>				
+				</div>
+				<div class='panel'>
+				</div>
+				<div class='panel'>				
+				</div>
+				<div class='panel'>				
+				</div>
 			</div>
-			<div class='panel'>
-			</div>
-			<div class='panel'>				
-			</div>
-			<div class='panel'>				
+			<div class='row' style="margin-top: 20px">
+				<div class='panel'>				
+				</div>
+				<div class='panel'>				
+				</div>
+				<div class='panel'>			
+				</div>
+				<div class='panel'>				
+				</div>
 			</div>
 		</div>
-		<div class='row' style="margin-top: 20px">
-			<div class='panel'>				
-			</div>
-			<div class='panel'>				
-			</div>
-			<div class='panel'>			
-			</div>
-			<div class='panel'>				
-			</div>
-		</div>
 	</div>
-
 	<script>
 		window.correctScores = [
 			{id: 1, team1:'Brazil',team2:'Croatia',score1:3,score2:1},
