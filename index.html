@@ -105,8 +105,8 @@
 					 }
 				 }
 				if (populateScores) {
-					$match.children('.score1').html(  s1 );
-					$match.children('.score2').html(  s2 );
+					$match.children('.score1').html(  "<span class='myscore'>"+s1+"</span><span class='realscore'>"+match.score1+"</span>" );
+					$match.children('.score2').html(  "<span class='myscore'>"+s2+"</span><span class='realscore'>"+match.score2+"</span>" );
 				}
 			});
 			return points;

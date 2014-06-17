@@ -56,6 +56,8 @@ body {
 	position: relative;
 }
 
+.match .score { position: relative;}
+
 .match:first-child { margin-top: 15px;}
 .match:last-child { margin-top: 5px;}
 .match input {
@@ -64,8 +66,8 @@ body {
 }
 
 .match.point3 { border: 2px solid green;}
-.match.point1 { border: 2px solid yellow;}
-.match.point0 { border: 2px solid red;}
+.match.point1 { border: 2px solid yellow; }
+.match.point0 { border: 2px solid red; }
 .match .badge { 
 	position: absolute;
 	color: white;
@@ -84,8 +86,23 @@ body {
 .match.point3 .badge3 { display: inline;}
 .match.point1 .badge1 { display: inline;}
 
+.match.point0 .myscore {text-decoration:line-through;}
+.match.point1 .myscore {text-decoration:line-through;}
+
 .played .score { font-size: 22px;}
 .played .score1 { margin-right: 15px;}
+
+.realscore {
+	visibility: hidden;
+	font-size: 9px;
+	margin-top: -4px;
+	position: absolute;
+	top: -5px;
+	right: -13px;
+}
+
+.match.point0 .realscore { visibility: visible;}
+.match.point1 .realscore { visibility: visible;}
 
 .score {
 	font-size: 14px;
