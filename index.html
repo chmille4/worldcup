@@ -21,7 +21,7 @@
 				$match = $("#" + match.id);
 				$match.children('.team1').html( match.team1 );
 				$match.children('.team2').html( match.team2 );
-				if (match.score1 != '') {
+				if (match.score1 !== '') {
 					$match.addClass('played')					
 				}
 				$match.children('.score1').html( match.score1 );
@@ -99,7 +99,7 @@
 				 	if (populateScores) {					 	
 					 	$match.addClass("point1")
 					 }
-				 } else if (match.score1 != "") {
+				 } else if (match.score1 !== "") {
 				 	if (populateScores) {					 	
 					 	$match.addClass("point0")
 					 }
