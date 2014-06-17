@@ -3,6 +3,13 @@ body {
 	font-weight: 300;
 }
 
+#selectedPlayer {
+	margin-left: 3px;
+	width: 74px;
+	display: inline-block;
+	text-align: left;
+}
+
 #players { 	
 	margin-top: 0px;
 	list-style: none;	

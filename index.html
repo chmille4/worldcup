@@ -17,16 +17,7 @@
 					$(panel).append("<div id='" + id + "' class='match'><div class='badge badge3'>+3</div><div class='badge badge1'>+1</div><span class='team team1'></span><span class='score score1' type='text'></span><span class='vs'>vs</span><span class='team team2'></span><span class='score score2' type='text'></span></div>");
 				}
 			})
-			window.correctScores.forEach(function(match){				
-				$match = $("#" + match.id);
-				$match.children('.team1').html( match.team1 );
-				$match.children('.team2').html( match.team2 );
-				if (match.score1 !== '') {
-					$match.addClass('played')					
-				}
-				$match.children('.score1').html( match.score1 );
-				$match.children('.score2').html( match.score2 );
-			});
+			populateCorrectScores();
 
 			window.playerScores = [];
 			for (var name in window.players) {
@@ -69,9 +60,29 @@
 			console.log(str);
 		}
 
+		function populateCorrectScores() {
+			$('.match').removeClass('point0 point1 point3');
+			$("#breadcrumb").css('visibility', 'hidden');
+			window.correctScores.forEach(function(match){				
+				$match = $("#" + match.id);
+				$match.children('.team1').html( match.team1 );
+				$match.children('.team2').html( match.team2 );
+				if (match.score1 !== '') {
+					$match.addClass('played')					
+				}
+				$match.children('.score1').html( match.score1 );
+				$match.children('.score2').html( match.score2 );
+			});
+		}
+
 		function generateScore(name, populateScores) {
 			var theirScores = window.players[name];
 			var points = 0;
+			if (populateScores) {
+				$("#breadcrumb").css("visibility", 'visible');
+				$("#selectedPlayer").html(" > " + name);
+			}
+
 			window.correctScores.forEach(function(match){				
 				$match = $("#" + match.id);				
 				$match.children('.team1').html( match.team1 );
@@ -87,7 +98,7 @@
 				 if ( match.score1 !== "" && ((match.score1 > match.score2 && s1 > s2) || (match.score1 < match.score2 && s1 < s2) || (match.score1 == match.score2 && s1 == s2)) )
 				 	guessWinner = true;
 
-				 if (populateScores) $match.removeClass('point3 point1 point0');
+				 $match.removeClass('point3 point1 point0');
 
 				 if (guessWinner && guessScore) {
 				 	points += 3;
@@ -115,6 +126,7 @@
 </head>
 <body>
 	<div style="width:1225px;margin-left:auto;margin-right:auto;text-align:center">
+		<div id="breadcrumb" style="float:left;margin-top:20px;margin-left:4px;"><a href="#" onclick='populateCorrectScores()'>scores</a><span id="selectedPlayer"></span></div>
 		<div style="font-size:40px;margin-bottom:20px">Boston College World Cup Bracket</div>
 		<div style="text-align:center; float:left; width:200px;border: 2px solid rgb(130,130,130);border-radius:4px">
 			<div style="font-size:20px;margin-top:10px">Scoreboard</div>
