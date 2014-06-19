@@ -23,12 +23,16 @@
 			for (var name in window.players) {
 				window.playerScores.push( [name, generateScore(name,false)])
 			}
-
+			window.playerScores.push(['Hodor', 16])
 			window.playerScores.sort(function(a,b) {return ((b[1] < a[1]) ? -1 : ((b[1] > a[1]) ? 1 : 0));})
 			var crown = true;
 			window.playerScores.forEach(function(player) {
 				var str = "<li><a href='#' onclick='generateScore(\"" + player[0] + "\",true)'>" + player[0] + "</a>" + "\t" + player[1] + "</li>";			
-				$("#players").append("<li><a href='#' onclick='generateScore(\"" + player[0] + "\",true)'>" + player[0] + "</a>\t<span>" + player[1] + "</span></li></ul>")
+				if (player[0] == 'Hodor') {
+					$("#players").append("<li><a href='#' onclick='hodor()'>" + player[0] + "</a>\t<span>" + player[1] + "</span></li></ul>")
+				} else {
+					$("#players").append("<li><a href='#' onclick='generateScore(\"" + player[0] + "\",true)'>" + player[0] + "</a>\t<span>" + player[1] + "</span></li></ul>")
+				}
 				// add crown to top spot
 				if (crown) {
 					$('#players li').css('position', 'relative')
@@ -47,6 +51,19 @@
 			}
 		}
 
+		function hodor() {
+			var num = Math.floor(Math.random() * 5) + 1;
+			var url = document.URL.split('/world_cup/')[0] + '/world_cup/images/hodor' + num + '.jpg';
+			$('#matches').css('display', 'none');
+			$('#hodor-img').attr('src', 'images/hodor' + num + '.jpg').css('display', 'inline');
+			$("#breadcrumb").css("visibility", 'visible');
+				$("#selectedPlayer").html(" > HODOR" );
+
+			var rand = Math.floor(Math.random() * 2) + 1;
+			var mp3 = new Audio('images/hodor' + rand + '.mp3');
+			mp3.play();
+		}
+
 		function scores2json() {
 			var str = "";
 			$('.match').each(function(i,match) {
@@ -63,6 +80,9 @@
 		function populateCorrectScores() {
 			$('.match').removeClass('point0 point1 point3');
 			$("#breadcrumb").css('visibility', 'hidden');
+			$('#hodor-img').css('display', 'none');
+			$('#matches').css('display', 'block');
+
 			window.correctScores.forEach(function(match){				
 				$match = $("#" + match.id);
 				$match.children('.team1').html( match.team1 );
@@ -82,6 +102,8 @@
 				$("#breadcrumb").css("visibility", 'visible');
 				$("#selectedPlayer").html(" > " + name);
 			}
+			$('#hodor-img').css('display', 'none');
+			$('#matches').css('display', 'block');
 
 			window.correctScores.forEach(function(match){				
 				$match = $("#" + match.id);				
@@ -125,6 +147,7 @@
 	</script>
 </head>
 <body>
+
 	<div style="width:1225px;margin-left:auto;margin-right:auto;text-align:center">
 		<div id="breadcrumb" style="float:left;margin-top:20px;margin-left:4px;"><a href="#" onclick='populateCorrectScores()'>scores</a><span id="selectedPlayer"></span></div>
 		<div style="font-size:40px;margin-bottom:20px">Boston College World Cup Bracket</div>
@@ -133,6 +156,7 @@
 			<ul id="players"></ul>
 		</div>
 		<div style="width: 1018px; float:right">
+			<img id='hodor-img'> </img>
 			<div id="matches">
 				<div class='row'>
 					<div class='panel'>				
@@ -160,6 +184,7 @@
 			</div>
 		</div>
 	</div>
+
 	<script>		
 		window.players = {
 			Chase : {"1": { "score1":3, "score2":1 },"2": { "score1":1, "score2":0 },"3": { "score1":3, "score2":2 },"4": { "score1":2, "score2":1 },"5": { "score1":0, "score2":2 },"6": { "score1":1, "score2":1 },"7": { "score1":1, "score2":1 },"8": { "score1":2, "score2":0 },"9": { "score1":2, "score2":0 },"10": { "score1":1, "score2":3 },"11": { "score1":1, "score2":2 },"12": { "score1":2, "score2":1 },"13": { "score1":2, "score2":0 },"14": { "score1":2, "score2":2 },"15": { "score1":2, "score2":1 },"16": { "score1":1, "score2":1 },"17": { "score1":2, "score2":3 },"18": { "score1":1, "score2":2 },"19": { "score1":3, "score2":1 },"20": { "score1":2, "score2":3 },"21": { "score1":2, "score2":3 },"22": { "score1":3, "score2":1 },"23": { "score1":2, "score2":2 },"24": { "score1":0, "score2":1 },"25": { "score1":1, "score2":2 },"26": { "score1":2, "score2":0 },"27": { "score1":1, "score2":2 },"28": { "score1":2, "score2":0 },"29": { "score1":1, "score2":1 },"30": { "score1":0, "score2":3 },"31": { "score1":3, "score2":0 },"32": { "score1":2, "score2":2 },"33": { "score1":2, "score2":1 },"34": { "score1":3, "score2":2 },"35": { "score1":1, "score2":3 },"36": { "score1":1, "score2":2 },"37": { "score1":2, "score2":2 },"38": { "score1":0, "score2":2 },"39": { "score1":3, "score2":1 },"40": { "score1":1, "score2":2 },"41": { "score1":1, "score2":3 },"42": { "score1":2, "score2":0 },"43": { "score1":2, "score2":2 },"44": { "score1":1, "score2":2 },"45": { "score1":2, "score2":1 },"46": { "score1":3, "score2":3 },"47": { "score1":1, "score2":2 },"48": { "score1":2, "score2":2 }} ,

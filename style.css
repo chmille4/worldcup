@@ -149,3 +149,8 @@ body {
 circle {
     fill: steelblue;
 }
+
+#hodor-img {
+	display:none;
+	height: 500px;
+}
