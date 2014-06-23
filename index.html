@@ -23,7 +23,7 @@
 			for (var name in window.players) {
 				window.playerScores.push( [name, generateScore(name,false)])
 			}
-			window.playerScores.push(['Hodor', 16])
+			window.playerScores.push(['Hodor', 25])
 			window.playerScores.sort(function(a,b) {return ((b[1] < a[1]) ? -1 : ((b[1] > a[1]) ? 1 : 0));})
 			var crown = true;
 			window.playerScores.forEach(function(player) {
